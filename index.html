@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- MANDATORY: Declare support for both light and dark themes -->
+  <meta name="color-scheme" content="light dark">
+  <title>DLA — Deutsch Lernen mit Ata | Deutsch A2 Arbeitsblatt</title>
+  <script>
+    {
+      const colorScheme = localStorage.getItem("dla-color-scheme");
+      if (colorScheme) {
+        document.querySelector('meta[name="color-scheme"]').content = colorScheme;
+        document.documentElement.dataset.theme = colorScheme;
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Sticky Top Bar -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-badge" aria-hidden="true">DLA</span>
+        <div class="brand-text">
+          <span class="brand-title">Deutsch Lernen mit Ata</span>
+          <span class="brand-subtitle">A2 İnteraktif Alıştırma Kağıdı</span>
+        </div>
+      </div>
+
+      <nav class="section-nav" aria-label="Bölüm Gezgini">
+        <a href="#sec-1" class="nav-pill" data-sec="1" title="1 | Wortschatz">1</a>
+        <a href="#sec-2" class="nav-pill" data-sec="2" title="2 | Artikel">2</a>
+        <a href="#sec-3" class="nav-pill" data-sec="3" title="3 | Kleidung">3</a>
+        <a href="#sec-4" class="nav-pill" data-sec="4" title="4 | Fragen & Antworten">4</a>
+        <a href="#sec-5" class="nav-pill" data-sec="5" title="5 | Wo? Präpositionen">5</a>
+        <a href="#sec-6" class="nav-pill" data-sec="6" title="6 | Satzbau">6</a>
+        <a href="#sec-7" class="nav-pill" data-sec="7" title="7 | Leseverstehen">7</a>
+        <a href="#sec-8" class="nav-pill" data-sec="8" title="8 | Fehler korrigieren">8</a>
+        <a href="#sec-9" class="nav-pill" data-sec="9" title="9 | Mini-Dialog">9</a>
+        <a href="#sec-10" class="nav-pill" data-sec="10" title="10 | Mein Zimmer">10</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <div class="score-pill" aria-live="polite">
+          <span class="score-label">Gesamt:</span>
+          <strong id="live-score">0</strong>
+          <span class="score-max">/ 98 P</span>
+        </div>
+        <button type="button" id="theme-toggle" class="icon-btn" aria-label="Temayı değiştir" title="Açık / Koyu Tema">
+          <span class="theme-icon" aria-hidden="true">◐</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Floating German Character Bar -->
+    <div class="umlaut-bar" role="toolbar" aria-label="Almanca Özel Karakterler">
+      <span class="umlaut-label">Almanca Harfler (Tıkla &amp; Ekle):</span>
+      <div class="umlaut-buttons">
+        <button type="button" class="char-btn" data-char="ä">ä</button>
+        <button type="button" class="char-btn" data-char="ö">ö</button>
+        <button type="button" class="char-btn" data-char="ü">ü</button>
+        <button type="button" class="char-btn" data-char="ß">ß</button>
+        <button type="button" class="char-btn" data-char="Ä">Ä</button>
+        <button type="button" class="char-btn" data-char="Ö">Ö</button>
+        <button type="button" class="char-btn" data-char="Ü">Ü</button>
+      </div>
+      <div class="progress-track" aria-hidden="true">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="worksheet-container">
+    <!-- Worksheet Hero / Header -->
+    <section class="worksheet-header card">
+      <div class="worksheet-title-row">
+        <div>
+          <p class="eyebrow">DEUTSCH LERNEN MIT ATA · A2 SEVİYESİ</p>
+          <h1>DEUTSCH A2 | ARBEITSBLATT</h1>
+          <p class="subtitle">Thema: Haus und Zimmer · Kleidung · Wo? · Präpositionen · Fragen und Antworten</p>
+        </div>
+        <div class="page-badge">Toplam 98 Puan</div>
+      </div>
+
+      <form id="student-info-form" class="student-meta" autocomplete="off">
+        <div class="form-group">
+          <label for="student-name">Name (Ad Soyad):</label>
+          <input type="text" id="student-name" name="student_name" placeholder="Örn: Ata Yılmaz" autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label for="student-date">Datum (Tarih):</label>
+          <input type="date" id="student-date" name="student_date">
+        </div>
+      </form>
+    </section>
+
+    <form id="worksheet-form" novalidate>
+      <!-- ================================================================
+           PAGE 1: WORTSCHATZ, ARTIKEL, KLEIDUNG
+           ================================================================ -->
+      <div class="page-divider">
+        <span>Sayfa 1 · Kelime Bilgisi, Artikeller ve Kıyafetler</span>
+      </div>
+
+      <!-- 1 | Wortschatz -->
+      <section id="sec-1" class="exercise-card card" data-section="1">
+        <div class="exercise-header">
+          <div>
+            <h2>1 | Wortschatz: Was bedeutet das? <span class="pts-badge">(10 Punkte)</span></h2>
+            <p class="instruction">Eşleştir. Her Almanca kelimeyi doğru Türkçe anlamıyla eşleştir. <span class="sub-hint">(Her doğru eşleştirme 1 puan.)</span></p>
+          </div>
+          <div class="section-score" id="score-sec-1">0 / 10 P</div>
+        </div>
+
+        <div class="matching-reference" aria-label="Türkçe Anlamlar Listesi">
+          <div class="ref-chip" data-letter="A"><strong>A.</strong> mutfak</div>
+          <div class="ref-chip" data-letter="B"><strong>B.</strong> çatı katı</div>
+          <div class="ref-chip" data-letter="C"><strong>C.</strong> oturma odası / salon</div>
+          <div class="ref-chip" data-letter="D"><strong>D.</strong> bahçe</div>
+          <div class="ref-chip" data-letter="E"><strong>E.</strong> çalışma odası</div>
+          <div class="ref-chip" data-letter="F"><strong>F.</strong> bodrum</div>
+          <div class="ref-chip" data-letter="G"><strong>G.</strong> banyo</div>
+          <div class="ref-chip" data-letter="H"><strong>H.</strong> çocuk odası</div>
+          <div class="ref-chip" data-letter="I"><strong>I.</strong> garaj</div>
+          <div class="ref-chip" data-letter="J"><strong>J.</strong> yatak odası</div>
+        </div>
+
+        <div class="matching-grid" id="matching-list">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="exercise-footer">
+          <button type="button" class="btn btn-secondary btn-check-section" data-target="1">Bölüm 1'i Kontrol Et</button>
+          <div class="feedback-summary" id="feedback-sec-1" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- 2 | Artikel ergänzen -->
+      <section id="sec-2" class="exercise-card card" data-section="2">
+        <div class="exercise-header">
+          <div>
+            <h2>2 | Artikel ergänzen <span class="pts-badge">(10 Punkte)</span></h2>
+            <p class="instruction">Boşluklara <strong>der / die / das</strong> seç. <span class="sub-hint">(Her doğru artikel 1 puan.)</span></p>
+          </div>
+          <div class="section-score" id="score-sec-2">0 / 10 P</div>
+        </div>
+
+        <div class="artikel-grid" id="artikel-list">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="exercise-footer">
+          <button type="button" class="btn btn-secondary btn-check-section" data-target="2">Bölüm 2'yi Kontrol Et</button>
+          <div class="feedback-summary" id="feedback-sec-2" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- 3 | Kleidung: Wörter einsetzen -->
+      <section id="sec-3" class="exercise-card card" data-section="3">
+        <div class="exercise-header">
+          <div>
+            <h2>3 | Kleidung: Wörter einsetzen <span class="pts-badge">(8 Punkte)</span></h2>
+            <p class="instruction">Kutudaki kelimeleri uygun boşluklara yerleştir. <span class="sub-hint">(Kelimeye tıklayarak aktif boşluğa ekleyebilir veya doğrudan yazabilirsin.)</span></p>
+          </div>
+          <div class="section-score" id="score-sec-3">0 / 8 P</div>
+        </div>
+
+        <div class="wortbank" id="kleidung-wortbank" aria-label="Kelime Kutusu (Wortbank)">
+          <span class="wortbank-title">Wortbank:</span>
+          <button type="button" class="word-chip" data-word="Mütze">Mütze</button>
+          <button type="button" class="word-chip" data-word="Stiefel">Stiefel</button>
+          <button type="button" class="word-chip" data-word="Hose">Hose</button>
+          <button type="button" class="word-chip" data-word="Kleid">Kleid</button>
+          <button type="button" class="word-chip" data-word="Pullover">Pullover</button>
+          <button type="button" class="word-chip" data-word="Kappe">Kappe</button>
+          <button type="button" class="word-chip" data-word="Bluse">Bluse</button>
+          <button type="button" class="word-chip" data-word="Sweatshirt">Sweatshirt</button>
+        </div>
+
+        <ol class="sentence-list" id="kleidung-list">
+          <!-- Populated by JS -->
+        </ol>
+
+        <div class="exercise-footer">
+          <button type="button" class="btn btn-secondary btn-check-section" data-target="3">Bölüm 3'ü Kontrol Et</button>
+          <div class="feedback-summary" id="feedback-sec-3" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           PAGE 2: ÜBUNGEN | SATZBAU UND GRAMMATIK
+           ================================================================ -->
+      <div class="page-divider">
+        <span>Sayfa 2 · ÜBUNGEN | SATZBAU UND GRAMMATIK (Schreibe ganze Sätze. Achte auf Großschreibung, Verbposition und Artikel.)</span>
+      </div>
+
+      <!-- 4 | Fragen und Antworten -->
+      <section id="sec-4" class="exercise-card card" data-section="4">
+        <div class="exercise-header">
+          <div>
+            <h2>4 | Fragen und Antworten <span class="pts-badge">(10 Punkte)</span></h2>
+            <p class="instruction">Verilen bilgileri kullanarak Almanca tam cümlelerle yanıtla. <span class="sub-hint">(Büyük/küçük harf yazımına, fiil sırasına ve artikellere dikkat et.)</span></p>
+          </div>
+          <div class="section-score" id="score-sec-4">0 / 10 P</div>
+        </div>
+
+        <div class="qa-list" id="qa-list">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="exercise-footer">
+          <button type="button" class="btn btn-secondary btn-check-section" data-target="4">Bölüm 4'ü Kontrol Et</button>
+          <div class="feedback-summary" id="feedback-sec-4" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- 5 | Wo? Präpositionen -->
+      <section id="sec-5" class="exercise-card card" data-section="5">
+        <div class="exercise-header">
+          <div>
+            <h2>5 | Wo? Präpositionen <span class="pts-badge">(10 Punkte)</span></h2>
+            <p class="instruction"><strong>in, auf, neben, zwischen, hinter</strong> sözcüklerini uygun biçimde kullan. “Wo?” sorusunda Dativ kullanılır.</p>
+          </div>
+          <div class="section-score" id="score-sec-5">0 / 10 P</div>
+        </div>
+
+        <ol class="sentence-list" id="praep-list">
+          <!-- Populated by JS -->
+        </ol>
+
+        <div class="extra-box">
+          <label for="praep-extra" class="extra-label">
+            <span class="extra-tag">Extra</span> Türkçeye çevir: <em>„Die Schuhe stehen neben dem Bett.“</em>
+          </label>
+          <input type="text" id="praep-extra" name="praep_extra" class="text-input full-width" placeholder="Türkçe çevirisini buraya yaz...">
+          <div class="item-feedback" id="fb-praep-extra"></div>
+        </div>
+
+        <div class="exercise-footer">
+          <button type="button" class="btn btn-secondary btn-check-section" data-target="5">Bölüm 5'i Kontrol Et</button>
+          <div class="feedback-summary" id="feedback-sec-5" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- 6 | Satzbau: Bringe die Wörter in Ordnung -->
+      <section id="sec-6" class="exercise-card card" data-section="6">
+        <div class="exercise-header">
+          <div>
+            <h2>6 | Satzbau: Bringe die Wörter in Ordnung <span class="pts-badge">(10 Punkte)</span></h2>
+            <p class="instruction">Kelimeleri doğru sıraya koy. Almancada çekimli fiilin yeri önemlidir. <span class="sub-hint">(Kelime kutucuklarına tıklayarak sıraya dizebilir veya cümleyi doğrudan yazabilirsin.)</span></p>
+          </div>
+          <div class="section-score" id="score-sec-6">0 / 10 P</div>
+        </div>
+
+        <div class="qa-list" id="satzbau-list">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="exercise-footer">
+          <button type="button" class="btn btn-secondary btn-check-section" data-target="6">Bölüm 6'yı Kontrol Et</button>
+          <div class="feedback-summary" id="feedback-sec-6" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           PAGE 3: ÜBUNGEN | LESEN UND SCHREIBEN
+           ================================================================ -->
+      <div class="page-divider">
+        <span>Sayfa 3 · ÜBUNGEN | LESEN UND SCHREIBEN (Leseverständnis, Fehlerkorrektur und eigene Sätze)</span>
+      </div>
+
+      <!-- 7 | Lies den Text und antworte -->
+      <section id="sec-7" class="exercise-card card" data-section="7">
+        <div class="exercise-header">
+          <div>
+            <h2>7 | Lies den Text und antworte <span class="pts-badge">(12 Punkte)</span></h2>
+            <p class="instruction">Metni oku ve sorulara Almanca cevap ver. <span class="sub-hint">(Her doğru cevap 2 puan.)</span></p>
+          </div>
+          <div class="section-score" id="score-sec-7">0 / 12 P</div>
+        </div>
+
+        <blockquote class="reading-passage" lang="de">
+          <p>
+            Hallo! Ich heiße Lina und wohne mit meiner Familie in einem kleinen Haus. Unser Haus hat ein
+            Wohnzimmer, eine Küche, ein Badezimmer und drei Schlafzimmer. Wir haben auch einen Garten,
+            aber keinen Balkon. Mein Zimmer ist nicht sehr groß. In meinem Zimmer gibt es ein Bett, einen
+            Schreibtisch und einen Schrank. Der Schreibtisch steht neben dem Bett. Meine Tasche liegt auf
+            dem Bett. Meine Schuhe stehen unter dem Schrank. Im Winter trage ich oft einen Pullover, eine
+            Mütze und Stiefel.
+          </p>
+        </blockquote>
+
+        <div class="qa-list" id="lesen-list">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="exercise-footer">
+          <button type="button" class="btn btn-secondary btn-check-section" data-target="7">Bölüm 7'yi Kontrol Et</button>
+          <div class="feedback-summary" id="feedback-sec-7" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- 8 | Finde und korrigiere die Fehler -->
+      <section id="sec-8" class="exercise-card card" data-section="8">
+        <div class="exercise-header">
+          <div>
+            <h2>8 | Finde und korrigiere die Fehler <span class="pts-badge">(10 Punkte)</span></h2>
+            <p class="instruction">Her cümlede bir ya da daha fazla hata var. Doğru Almanca cümleyi yaz. <span class="sub-hint">(Her doğru cümle 2 puan.)</span></p>
+          </div>
+          <div class="section-score" id="score-sec-8">0 / 10 P</div>
+        </div>
+
+        <div class="qa-list" id="fehler-list">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="exercise-footer">
+          <button type="button" class="btn btn-secondary btn-check-section" data-target="8">Bölüm 8'i Kontrol Et</button>
+          <div class="feedback-summary" id="feedback-sec-8" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           PAGE 4: ÜBUNGEN | SPRECHEN UND SCHREIBEN
+           ================================================================ -->
+      <div class="page-divider">
+        <span>Sayfa 4 · ÜBUNGEN | SPRECHEN UND SCHREIBEN (Sözlü pratik ve serbest yazma | toplam 20 puan)</span>
+      </div>
+
+      <!-- 9 | Mini-Dialog -->
+      <section id="sec-9" class="exercise-card card" data-section="9">
+        <div class="exercise-header">
+          <div>
+            <h2>9 | Mini-Dialog <span class="pts-badge">(8 Punkte)</span></h2>
+            <p class="instruction">İki kişiyle çalış. Soruları sırayla sor ve cevapla. Ardından 4 cevap yaz. <span class="sub-hint">(4 anlamlı Almanca cevap × 2 puan.)</span></p>
+          </div>
+          <div class="section-score" id="score-sec-9">0 / 8 P</div>
+        </div>
+
+        <div class="qa-list" id="dialog-list">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="exercise-footer">
+          <button type="button" class="btn btn-secondary btn-check-section" data-target="9">Bölüm 9'u Kontrol Et</button>
+          <div class="feedback-summary" id="feedback-sec-9" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- 10 | Mein Zimmer -->
+      <section id="sec-10" class="exercise-card card" data-section="10">
+        <div class="exercise-header">
+          <div>
+            <h2>10 | Mein Zimmer <span class="pts-badge">(12 Punkte)</span></h2>
+            <p class="instruction">Odanı anlatan 5–6 Almanca cümle yaz. En az <strong>3 mobilya/nesne</strong>, <strong>2 yer edatı</strong> ve <strong>1 sıfat</strong> kullan.</p>
+          </div>
+          <div class="section-score" id="score-sec-10">0 / 12 P</div>
+        </div>
+
+        <div class="hilfen-box">
+          <span class="hilfen-label">Hilfen (Tıkla &amp; Ekle):</span>
+          <button type="button" class="starter-chip" data-insert="Mein Zimmer ist ">Mein Zimmer ist …</button>
+          <button type="button" class="starter-chip" data-insert="In meinem Zimmer gibt es ">In meinem Zimmer gibt es …</button>
+          <button type="button" class="starter-chip" data-insert="Das Bett steht ">Das Bett steht …</button>
+          <button type="button" class="starter-chip" data-insert="Neben dem ">Neben dem … steht …</button>
+        </div>
+
+        <div class="rubric-checklist" id="zimmer-checklist" aria-label="Yazma Kriterleri">
+          <div class="criteria-pill" id="crit-sentences">
+            <span class="crit-icon" aria-hidden="true">○</span>
+            <span>5–6 Cümle (4 P)</span>
+            <strong id="count-sentences">0</strong>
+          </div>
+          <div class="criteria-pill" id="crit-nouns">
+            <span class="crit-icon" aria-hidden="true">○</span>
+            <span>En az 3 Mobilya/Nesne (3 P)</span>
+            <strong id="count-nouns">0/3</strong>
+          </div>
+          <div class="criteria-pill" id="crit-preps">
+            <span class="crit-icon" aria-hidden="true">○</span>
+            <span>En az 2 Yer Edatı (3 P)</span>
+            <strong id="count-preps">0/2</strong>
+          </div>
+          <div class="criteria-pill" id="crit-adjs">
+            <span class="crit-icon" aria-hidden="true">○</span>
+            <span>En az 1 Sıfat (2 P)</span>
+            <strong id="count-adjs">0/1</strong>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="mein-zimmer-text">Metniniz (5–6 Almanca cümle):</label>
+          <textarea id="mein-zimmer-text" name="mein_zimmer" rows="6" placeholder="Mein Zimmer ist ... In meinem Zimmer gibt es ..."></textarea>
+          <div class="item-feedback" id="fb-zimmer"></div>
+        </div>
+
+        <div class="exercise-footer">
+          <button type="button" class="btn btn-secondary btn-check-section" data-target="10">Bölüm 10'u Kontrol Et</button>
+          <div class="feedback-summary" id="feedback-sec-10" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           FINAL SUBMIT / SUMMARY BAR
+           ================================================================ -->
+      <section class="final-card card" aria-labelledby="final-heading">
+        <div class="final-header">
+          <div>
+            <h2 id="final-heading">Testi Tamamla ve Değerlendir</h2>
+            <p class="instruction">Tüm bölümleri tek seferde kontrol edebilir, eksiklerinizi görebilir veya cevapları sıfırlayabilirsiniz.</p>
+          </div>
+          <div class="final-score-box">
+            <span class="final-score-label">Gesamt</span>
+            <div class="final-score-value"><span id="final-total-score">0</span> <small>/ 98 Punkte</small></div>
+          </div>
+        </div>
+
+        <div class="final-actions">
+          <button type="submit" class="btn btn-primary" id="check-all-btn">Tüm Kağıdı Kontrol Et (Puanla)</button>
+          <button type="button" class="btn btn-outline" id="toggle-hints-btn" aria-expanded="false" aria-controls="grammar-notes-panel">Dilbilgisi Notları &amp; İpuçları</button>
+          <button type="button" class="btn btn-outline" id="print-btn">Yazdır / PDF Kaydet</button>
+          <button type="button" class="btn btn-danger" id="reset-all-btn">Sıfırla</button>
+        </div>
+
+        <div id="overall-result-banner" class="result-banner" hidden aria-live="polite"></div>
+
+        <!-- Grammar Notes Panel (Expandable) -->
+        <div id="grammar-notes-panel" class="grammar-notes" hidden>
+          <h3>Öğretim ve Dilbilgisi Notları (A2 Hatırlatma)</h3>
+          <ul>
+            <li><strong>Soru Zamirleri:</strong> <code>Wo?</code> = Nerede? · <code>Wie?</code> = Nasıl? · <code>Wie viele?</code> = Kaç tane?</li>
+            <li><strong>Wo? (Nerede?) + Dativ:</strong> Bulunma hâlinde artikeller değişir: <code>der → dem</code>, <code>das → dem</code>, <code>die → der</code>. <em>„in dem“</em> çoğu zaman <strong>„im“</strong> olarak kısaltılır.</li>
+            <li><strong>es gibt + Akkusativ:</strong> <em>Es gibt ein Bett / einen Schreibtisch / einen Schrank.</em></li>
+            <li><strong>haben + Akkusativ:</strong> <em>Wir haben eine Küche. Wir haben keine Küche.</em></li>
+            <li><strong>Artikel / Çoğul:</strong> <code>der Balkon → die Balkone</code>; <code>das Zimmer → die Zimmer</code>.</li>
+            <li><strong>Fiil Uyumu:</strong> <em>Die Schuhe <strong>stehen</strong></em> (çoğul), ama <em>der Schreibtisch <strong>steht</strong></em> (tekil).</li>
+          </ul>
+        </div>
+      </section>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <p><strong>DLA — Deutsch Lernen mit Ata</strong> · Deutsch A2 | Haus, Kleidung und Ortsangaben</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
